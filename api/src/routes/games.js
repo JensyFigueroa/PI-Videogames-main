@@ -8,7 +8,7 @@ gamesRouter.get('/', gamesArrObj)
 
 gamesRouter.get('/name', gameXname)
 
-gamesRouter.get('/:idVideogame',gameXId)
+gamesRouter.get('/detail/:idVideogame',gameXId)
 
 gamesRouter.post('/', gameCreate)
 

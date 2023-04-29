@@ -11,7 +11,7 @@ const getArrObj = async (req, res) => {
         /* ************OBTENEMOS INFO DE LA API******************** */
         const dataAPI = (await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`)).data.results;
 
-        const infoAPI = cleanAPIGenres(dataAPI);
+        const infoAPI = cleanAPIGenres(dataAPI)
 
         // console.log(infoAPI);
         /* ************LO AGREGAMOS A LA DB******************** */
