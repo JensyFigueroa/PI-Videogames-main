@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import styles from './Detail.module.css'
+import { Footer } from '../footer/Footer';
 
 export default function Detail() {
 
@@ -60,6 +61,7 @@ export default function Detail() {
         </div>
 
       </section>
+      <Footer/>
     </div>
   )
 }

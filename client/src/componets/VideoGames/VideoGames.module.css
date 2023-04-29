@@ -5,7 +5,7 @@
   background-position: center;
   background-repeat: no-repeat;
   background-position-y: 20%;
-  min-height: 65vh;
+  min-height: 55vh;
   width: 100%;
 }
 
@@ -26,18 +26,18 @@
 
 .wave {
   width: 100%;
-  /* height: 150px;  */
   overflow: hidden;
   position: absolute;
-  top: 273px;
+  top: 180px;
   left: 0;
 
 }
 
 .containerSearch {
+  position: inherit;
   background-color: rgba(2, 4, 74);
   height: auto;
-  margin-top: 87px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
 }

@@ -6,6 +6,7 @@ import { getGenres } from '../../redux/actions/index.js'
 
 import validate from './validation.js'
 import axios from 'axios'
+import { Footer } from '../footer/Footer'
 
 export default function CreateGame() {
   const [form, setForm] = useState({ name: '', description: '', platforms: [], genres: [], image: '', released: '', rating: '' });
@@ -163,6 +164,8 @@ export default function CreateGame() {
         </div>
         <button className={styles.btn} type="submit">Create game</button>
       </form>
+      <Footer/>
     </div>
+
   )
 }

@@ -4,8 +4,9 @@ import Cards from '../cards/Cards.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { orderCards, filterGenres, getGameName, getGames, getGenres, filterOrigin, } from '../../redux/actions/index.js'
 import SearchBar from '../searchBar/SearchBar.jsx'
+import { Footer } from '../footer/Footer';
 import spinner from './Spinner.gif'
-import { NavLink } from 'react-router-dom'
+
 
 export default function VideoGames() {
 
@@ -68,10 +69,8 @@ export default function VideoGames() {
     let nextPage;
     if (currentPage < totalPages) {
       nextPage = totalPages - 1 
-      console.log('if', nextPage)
     }else{
       nextPage = currentPage + 1;
-      console.log('else', nextPage)
     }
    
     const firstIndex = nextPage * cardsXpage;
@@ -79,7 +78,6 @@ export default function VideoGames() {
       setCurrentPage(5)
       return
     };
-
 
     setNumGamesXpage([...allGames].splice(firstIndex, cardsXpage))
     setCurrentPage(nextPage)
@@ -91,7 +89,7 @@ export default function VideoGames() {
 
 
   return (
-    <div>
+    <div style={{position:'relative'}}>
       <div className={styles.section}>
         <h2>Find or create your favorite game </h2>
         <p>Live the best experience in Game On</p>
@@ -134,7 +132,7 @@ export default function VideoGames() {
 
       {stateLoading ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
         <img src={spinner} alt="" />
-      </div> : <Cards numGamesXpage={numGamesXpage} />
+      </div> : <Cards numGamesXpage={numGamesXpage} /> 
 
       }
 
@@ -150,8 +148,7 @@ export default function VideoGames() {
           :
           ''
       }
-
-
+      <Footer/>
     </div>
   )
 }
