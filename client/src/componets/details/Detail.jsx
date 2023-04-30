@@ -20,7 +20,8 @@ export default function Detail() {
   // console.log(id);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/videogames/detail/${id}`)
+    // fetch(`http://localhost:3001/videogames/detail/${id}`)
+    fetch(`https://likely-knife-production.up.railway.app/videogames/detail/${id}`)
       .then((response) => response.json())
       .then((game) => {
         // console.log(game);
