@@ -2,7 +2,7 @@ const { Videogame, Op, Genres } = require('../db.js');
 const axios = require('axios');
 
 require('dotenv').config();
-const { API_KEY } = process.env;
+const {API_KEY} = process.env;
 
 const { cleanGames, cleanDB } = require('./cleanAPI.js');
 
