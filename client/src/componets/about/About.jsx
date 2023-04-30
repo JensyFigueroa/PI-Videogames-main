@@ -9,6 +9,7 @@ import express from './img/express.svg'
 import sequelize from './img/sequelize.svg'
 import postman from './img/postman.svg'
 import postgre from './img/postgresql.svg'
+import node from './img/node.png'
 
 
 export default function About() {
@@ -41,6 +42,10 @@ export default function About() {
         <div className={styles.tecnologies}>
           <img src={redux} alt="" />
           <p>Redux is an open source JavaScript library for managing application state. It is commonly used with other libraries like React or Angular for building User Interfaces. Dan Abramov and Andrew Clark were inspired by another Facebook library, Flux, to create Redux.</p>
+        </div>
+        <div className={styles.tecnologies}>
+          <img src={node} alt="" style={{ width: '44px', height: '50px' }} />
+          <p>Node.js is a cross-platform, open source, server layer runtime environment based on the JavaScript programming language, asynchronous, with data I/O in an event-driven architecture, and based on the V8 Node.js engine. Google.</p>
         </div>
         <div className={styles.tecnologies}>
           <img src={express} alt="" style={{ width: '44px', height: '50px' }} />

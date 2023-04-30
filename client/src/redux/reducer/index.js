@@ -40,8 +40,6 @@ const rootReducer = (state = inicialState, action) => {
                 filterGameXGenres =  state.allGames
             } else {
                 filterGameXGenres = arrGameXGares.filter(game => game.genres && game.genres.includes(action.payload))
-
-
                 console.log(state.games)
             } 
 
