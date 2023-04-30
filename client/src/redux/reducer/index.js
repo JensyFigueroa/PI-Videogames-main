@@ -4,6 +4,7 @@ const inicialState = {
     games: [],
     allGames: [],
     genres: [],
+    test:[],
     loading: true
 }
 
@@ -19,6 +20,7 @@ const rootReducer = (state = inicialState, action) => {
             }
 
         case GET_GAME_X_NAME:
+            console.log('Por name ',action.payload)
             return {
                 ...state,
                 games: action.payload
@@ -32,21 +34,21 @@ const rootReducer = (state = inicialState, action) => {
 
         case FILTER_GENRES:
             let filterGameXGenres;
+            let arrGameXGares = state.games;
 
             if (action.payload === 'Select Option') {
-                filterGameXGenres =  state.copyGames
+                filterGameXGenres =  state.allGames
             } else {
+                filterGameXGenres = arrGameXGares.filter(game => game.genres && game.genres.includes(action.payload))
+
+
                 console.log(state.games)
-                 filterGameXGenres = state.games.map(game => game.genres && game.genres.includes(action.payload))
             } 
 
             return {
                 ...state,
-                games:[...filterGameXGenres],
-                allGames: [...filterGameXGenres]
-               
+                games:[...filterGameXGenres],               
             }
-
 
         case ORDER_CARDS:
             let orderCards;
@@ -73,10 +75,10 @@ const rootReducer = (state = inicialState, action) => {
             }
             
             if (action.payload === 'Local') {
-                filterXorigin = state.games.filter(game => typeof game.id === 'string')
+                filterXorigin = state.allGames.filter(game => typeof game.id === 'string')
             }
             if (action.payload === 'Api') {
-                filterXorigin = state.games.filter(game => typeof game.id === 'number')
+                filterXorigin = state.allGames.filter(game => typeof game.id === 'number')
             }
 
             return {

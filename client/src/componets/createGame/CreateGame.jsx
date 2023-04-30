@@ -98,74 +98,77 @@ export default function CreateGame() {
   let i = 0;
 
   return (
-    <div className={styles.containerForm} onClick={showCheckboxes}>
-      <h1 style={{ textAlign: 'center' }}>Create new game</h1>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.field} style={{ gap: '8px' }}>
-          <label id="label">Name game
-            <input id="input" name="name" type="text" onChange={handleInputChange} onBlur={handleBlur} value={form.name} required />
-            {errors.name && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.name}</p>}
-          </label>
-          <label id="label" >Game description
-            <textarea id="input" type="textarea" name="description" onChange={handleInputChange} onBlur={handleBlur} value={form.description} required></textarea>
-            {errors.description && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.description}</p>}
-          </label>
-        </div>
+    <div className={styles.containerAll}>
+      <div className={styles.containerForm} onClick={showCheckboxes}>
+        <h1 style={{ textAlign: 'center' }}>Create new game</h1>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.field} style={{ gap: '8px' }}>
+            <label id="label">Name game
+              <input id="input" name="name" type="text" onChange={handleInputChange} onBlur={handleBlur} value={form.name} required />
+              {errors.name && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.name}</p>}
+            </label>
+            <label id="label" >Game description
+              <textarea id="input" type="textarea" name="description" onChange={handleInputChange} onBlur={handleBlur} value={form.description} required></textarea>
+              {errors.description && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.description}</p>}
+            </label>
+          </div>
 
-        <div className={styles.field} style={{ gap: '8px' }} >
-          <label htmlFor="platforms">Platforms
-            <select id='platforms'>
-              <option>Select options</option>
-            </select>
+          <div className={styles.field} style={{ gap: '8px' }} >
+            <label htmlFor="platforms">Platforms
+              <select id='platforms'>
+                <option>Select options</option>
+              </select>
 
-            <div className={styles.overSelect}>
-              <div style={checkPlatforms ? { display: 'block' } : { display: 'none' }} className={styles.checkBoxes}>
-                {platforms.map(platform =>
-                  <label name='checkbok' key={++i}>
-                    <input type="checkbox" name='platforms' onChange={handleInputChange} onBlur={handleBlur} value={platform} /> {` ${platform}`}
-                  </label>
-                )}
+              <div className={styles.overSelect}>
+                <div  style={checkPlatforms ? { display: 'block' } : { display: 'none' }} className={styles.checkBoxes}>
+                  {platforms.map(platform =>
+                    <label name='checkbok' key={++i} className={styles.field}>
+                      <input  type="checkbox" name='platforms' onChange={handleInputChange} onBlur={handleBlur} value={platform} /> {` ${platform}`}
+                    </label>
+                  )}
+                </div>
               </div>
-            </div>
-          </label>
+            </label>
 
-          <label htmlFor="genres">Genres
-            <select id='genres'>
-              <option>Select options</option>
-            </select>
+            <label htmlFor="genres">Genres
+              <select id='genres'>
+                <option>Select options</option>
+              </select>
 
-            <div className={styles.overSelect}>
-              <div style={checkGenres ? { display: 'block' } : { display: 'none' }} className={styles.checkBoxes}>
-                {genres.map(genre =>
-                  <label name='checkbok' key={++i}>
-                    <input type="checkbox" name='genres' onChange={handleInputChange} onBlur={handleBlur} value={genre.name} /> {`  ${genre.name}`}
-                  </label>
-                )}
+              <div className={styles.overSelect}>
+                <div style={checkGenres ? { display: 'block' } : { display: 'none' }} className={styles.checkBoxes}>
+                  {genres.map(genre =>
+                    <label name='checkbok' key={++i}>
+                      <input className='' type="checkbox" name='genres' onChange={handleInputChange} onBlur={handleBlur} value={genre.name} /> {`  ${genre.name}`}
+                    </label>
+                  )}
+                </div>
               </div>
-            </div>
-          </label>
+            </label>
 
-        </div>
+          </div>
 
-        <div className={styles.field} style={{ gap: '8px' }}>
-          <label id="label">Image link
-            <input id="input" type="text" name="image" placeholder='Game url' onChange={handleInputChange} onBlur={handleBlur} value={form.image} required />
-            {errors.image && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.image}</p>}
-          </label>
-        </div>
+          <div className={styles.field} style={{ gap: '8px' }}>
+            <label id="label">Image link
+              <input id="input" type="text" name="image" placeholder='Game url' onChange={handleInputChange} onBlur={handleBlur} value={form.image} required />
+              {errors.image && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.image}</p>}
+            </label>
+          </div>
 
-        <div className={styles.field} style={{ gap: '8px' }}>
-          <label id="label">release date
-            <input id="input" type="date" name="released" onChange={handleInputChange} onBlur={handleBlur} value={form.released} required />
-          </label>
-          <label id="label">Rating
-            <input id="input" type="number" min="1" max="5" step="0.1" name="rating" onChange={handleInputChange} onBlur={handleBlur} value={form.rating} required />
-          </label>
-        </div>
-        <button className={styles.btn} type="submit">Create game</button>
-      </form>
+          <div className={styles.field} style={{ gap: '8px' }}>
+            <label id="label">release date
+              <input id="input" type="date" name="released" onChange={handleInputChange} onBlur={handleBlur} value={form.released} required />
+            </label>
+            <label id="label">Rating
+              <input id="input" type="number" min="1" max="5" step="0.1" name="rating" onChange={handleInputChange} onBlur={handleBlur} value={form.rating} required />
+            </label>
+          </div>
+          <button className={styles.btn} type="submit">Create game</button>
+        </form>
+      </div>
       <Footer/>
     </div>
+
 
   )
 }

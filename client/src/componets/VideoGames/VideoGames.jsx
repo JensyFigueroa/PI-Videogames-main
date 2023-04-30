@@ -24,72 +24,9 @@ export default function VideoGames() {
   const stateLoading = useSelector(state => state.loading)
 
   const genres = useSelector(state => state.genres)
-  const games = useSelector(state => state.games)
-
-  /*############### Start Pagination ##############*/
-  const cardsXpage = 20;
-  const totalPages = Math.ceil(games.length / cardsXpage)
-
-  let pageNum = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNum.push(i)
-  }
-
-  const [allGames, setAllGames] = useState(games)
-  const [numGamesXpage, setNumGamesXpage] = useState([...games].splice(0, cardsXpage))
-  const [currentPage, setCurrentPage] = useState(0)
-
-  console.log(currentPage)
-
-  const prevHandler = () => {
-    const prevPage = currentPage - 1;
-    console.log(prevPage)
-    if (prevPage < 0) return;
-
-    const firstIndex = prevPage * cardsXpage;
-
-    setNumGamesXpage([...allGames].splice(firstIndex, cardsXpage))
-    setCurrentPage(prevPage)
-  }
-
-  const handlerPage = (e) => {
-    const nextPage = e.target.value -1;
-
-    const firstIndex = nextPage * cardsXpage;
-
-    if (firstIndex === games.length) return;
-
-    setNumGamesXpage([...allGames].splice(firstIndex, cardsXpage))
-
-    setCurrentPage(nextPage)
-    // console.log(e.target.value)
-  }
-
-  const nextHandler = () => {
-    let nextPage;
-    if (currentPage < totalPages) {
-      nextPage = totalPages - 1 
-    }else{
-      nextPage = currentPage + 1;
-    }
-   
-    const firstIndex = nextPage * cardsXpage;
-    if (firstIndex === games.length) {
-      setCurrentPage(5)
-      return
-    };
-
-    setNumGamesXpage([...allGames].splice(firstIndex, cardsXpage))
-    setCurrentPage(nextPage)
-
-    console.log('next', firstIndex)
-  }
-
-  /*############### End Pagination ##############*/
-
 
   return (
-    <div style={{position:'relative'}}>
+    <div style={{ position: 'relative' }}>
       <div className={styles.section}>
         <h2>Find or create your favorite game </h2>
         <p>Live the best experience in Game On</p>
@@ -129,26 +66,12 @@ export default function VideoGames() {
 
       </div>
 
-
       {stateLoading ? <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
         <img src={spinner} alt="" />
-      </div> : <Cards numGamesXpage={numGamesXpage} /> 
-
+      </div> : <Cards />
       }
 
-      {
-        games ? <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <button className={styles.btnPagination} onClick={prevHandler}>{'<< '}</button>
-          <div>
-            {/* {pageNum.map((num, i) => console.log(num,i,currentPage))} */}
-            {pageNum.map((num, i) => <button className={currentPage ===  i ? styles.btnActive : styles.btnPagination} key={i} style={{ marginRight: '5px' }} onClick={(e) => handlerPage (e)} value={num}>{num}</button>)}
-          </div>
-          <button className={styles.btnPagination} onClick={nextHandler}>{' >>'}</button>
-        </div>
-          :
-          ''
-      }
-      <Footer/>
+      <Footer />
     </div>
   )
 }

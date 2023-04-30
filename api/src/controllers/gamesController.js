@@ -69,12 +69,13 @@ const gameXname = async (req, res) => {
         const gameDB = await Videogame.findAll({
             where: {
                 name: {
-                    [Op.notLike]: `${name}%`
+                    [Op.like]: `%${name}%`
                 } 
             },
             include: [{ model: Genres, attributes: ['name'] }]
         })
 
+        console.log(gameDB)
         /* ***************OBTENIENDO INFO A LA API************************ */
         const dataAPI = (await axios.get(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)).data.results;
         // console.log(dataAPI);
@@ -99,6 +100,7 @@ const gameXname = async (req, res) => {
         res.status(200).json(top15);
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({ error: error.message })
     }
 }
