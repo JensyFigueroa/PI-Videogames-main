@@ -5,6 +5,7 @@ import Details from './componets/details/Detail';
 import CreateGame from './componets/createGame/CreateGame.jsx';
 import Navbar from './componets/navbar/Navbar.jsx';
 import About from './componets/about/About.jsx';
+import Footer from './componets/footer/Footer.jsx';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <Route exact path='/createGame' element={<CreateGame/>}/>
    </Routes>
 
+{location.pathname !== '/' && <Footer/>}
     
     </div>
   );

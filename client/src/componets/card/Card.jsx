@@ -9,7 +9,7 @@ export default function Card(props) {
             <Link to={`/detail/${props.id}`} className={styles.detail}>
                 <img src={props.image} alt={props.name}/>
                 <h2>{props.name}</h2>
-                <h4>{props.genres}</h4>
+                <h4>{props.genres.join(' - ')}</h4>
             </Link>
         </div>
     )

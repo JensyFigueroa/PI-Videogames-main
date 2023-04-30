@@ -7,6 +7,15 @@ export default function validateInputs (inputs){
     if(!inputs.image) errors.image = 'Required field';
     if(!inputs.name) errors.name = 'Required field';
 
+    // console.log(inputs)
+    if(!inputs.released) errors.released = 'Required field';
+    if(!inputs.rating) errors.rating = 'Required field';
+    if(!inputs.platforms.length) errors.platforms = 'Required field';
+    if(!inputs.genres.length ) errors.genres = 'Required field';
+
+    console.log(!inputs.platforms.length)
+
+
 
     return errors
 }

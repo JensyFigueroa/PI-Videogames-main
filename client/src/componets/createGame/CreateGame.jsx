@@ -6,7 +6,7 @@ import { getGenres } from '../../redux/actions/index.js'
 
 import validate from './validation.js'
 import axios from 'axios'
-import { Footer } from '../footer/Footer'
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateGame() {
   const [form, setForm] = useState({ name: '', description: '', platforms: [], genres: [], image: '', released: '', rating: '' });
@@ -20,7 +20,7 @@ export default function CreateGame() {
   }, [dispatch])
 
   const handleInputChange = (e) => {
-    // console.log('handleInputChange ',e.target.value);
+    console.log('handleInputChange ',e.target.value);
     const { name, value, checked } = e.target
 
     if (name === 'name' || name === 'description' || name === 'image' || name === 'released' || name === 'rating') {
@@ -54,7 +54,6 @@ export default function CreateGame() {
 
   }
 
-
   const handleBlur = (e) => {
     handleInputChange(e);
     setErrors(validate(form))
@@ -87,12 +86,16 @@ export default function CreateGame() {
 
   }
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Enviar el form ', form);
 
     axios.post('http://localhost:3001/videogames', form)
 
+    alert('The card was created correctly...!');
+    navigate('/videogames');
   }
 
   let i = 0;
@@ -116,7 +119,7 @@ export default function CreateGame() {
           <div className={styles.field} style={{ gap: '8px' }} >
             <label htmlFor="platforms">Platforms
               <select id='platforms'>
-                <option>Select options</option>
+                {form.platforms.length === 0 ? <option>Select options</option>:  <option>{form.platforms.join(' - ')}</option>}
               </select>
 
               <div className={styles.overSelect}>
@@ -128,22 +131,24 @@ export default function CreateGame() {
                   )}
                 </div>
               </div>
+                  {errors.platforms && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.platforms}</p>}
             </label>
 
             <label htmlFor="genres">Genres
               <select id='genres'>
-                <option>Select options</option>
+              {form.genres.length === 0 ? <option>Select options</option>:  <option>{form.genres.join(' - ')}</option>}
               </select>
 
               <div className={styles.overSelect}>
                 <div style={checkGenres ? { display: 'block' } : { display: 'none' }} className={styles.checkBoxes}>
                   {genres.map(genre =>
                     <label name='checkbok' key={++i}>
-                      <input className='' type="checkbox" name='genres' onChange={handleInputChange} onBlur={handleBlur} value={genre.name} /> {`  ${genre.name}`}
+                      <input type="checkbox" name='genres' onChange={handleInputChange} onBlur={handleBlur} value={genre.name} /> {`  ${genre.name}`}
                     </label>
                   )}
                 </div>
               </div>
+                  {errors.genres && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.genres}</p>}
             </label>
 
           </div>
@@ -158,15 +163,16 @@ export default function CreateGame() {
           <div className={styles.field} style={{ gap: '8px' }}>
             <label id="label">release date
               <input id="input" type="date" name="released" onChange={handleInputChange} onBlur={handleBlur} value={form.released} required />
+              {errors.released && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.released}</p>}
             </label>
             <label id="label">Rating
               <input id="input" type="number" min="1" max="5" step="0.1" name="rating" onChange={handleInputChange} onBlur={handleBlur} value={form.rating} required />
+              {errors.rating && <p style={{ color: 'red', fontStyle: 'italic', fontSize: '18px' }}>{errors.rating}</p>}
             </label>
           </div>
           <button className={styles.btn} type="submit">Create game</button>
         </form>
       </div>
-      <Footer/>
     </div>
 
 
