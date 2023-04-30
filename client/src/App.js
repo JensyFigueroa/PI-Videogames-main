@@ -7,6 +7,9 @@ import Navbar from './componets/navbar/Navbar.jsx';
 import About from './componets/about/About.jsx';
 import Footer from './componets/footer/Footer.jsx';
 
+import axios from 'axios'
+axios.defaults.baseURL = 'http://localhost:3001'
+
 
 function App() {
   const location = useLocation()
